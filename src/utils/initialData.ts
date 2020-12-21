@@ -3,6 +3,8 @@ export default {
     {
       name: 'Количество разработчиков',
       initValue: 0,
+      minValue: 0,
+      maxValue: 50,
       areas: [
         {
           name: 'Мало', range: [0, 0, 5, 11],
@@ -18,6 +20,8 @@ export default {
     {
       name: 'Количество оставшихся дней',
       initValue: 0,
+      minValue: 0,
+      maxValue: 14,
       areas: [
         {
           name: 'Мало',
@@ -36,6 +40,8 @@ export default {
     {
       name: 'Сумма оставшихся SP',
       initValue: 0,
+      minValue: 0,
+      maxValue: 200,
       areas: [
         {
           name: 'Мало',
@@ -54,6 +60,8 @@ export default {
     {
       name: 'Сумма выполненных SP',
       initValue: 0,
+      minValue: 0,
+      maxValue: 50,
       areas: [
         {
           name: 'Мало',

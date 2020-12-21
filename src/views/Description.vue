@@ -212,6 +212,59 @@ export default class Description extends Vue {
         ],
       },
     },
+    {
+      name: 'Успеет команда или нет',
+      trapezoidData: {
+        labels: [0, 15, 20, 40, 50, 60, 70, 80, 85, 90, 100],
+        datasets: [
+          {
+            label: 'Точно не успевает',
+            data: [{ x: 0, y: 1 }, { x: 15, y: 1 }, { x: 20, y: 0 }],
+            backgroundColor: 'rgba(239, 83, 80, 0.5)',
+          },
+          {
+            label: 'Скорее всего не успевает',
+            data: [{ x: 15, y: 0 }, { x: 20, y: 1 }, { x: 40, y: 1 }, { x: 50, y: 0 }],
+            backgroundColor: 'rgba(171, 71, 188, 0.5)',
+          },
+          {
+            label: 'Возможно успевает',
+            data: [{ x: 40, y: 0 }, { x: 60, y: 1 }, { x: 70, y: 1 }, { x: 85, y: 0 }],
+            backgroundColor: 'rgba(141, 110, 99, 0.5)',
+          },
+          {
+            label: 'Точно успевает',
+            data: [{ x: 80, y: 0 }, { x: 90, y: 1 }, { x: 100, y: 1 }],
+            backgroundColor: 'rgba(66, 165, 245, 0.5)',
+          },
+        ],
+      },
+      triangleData: {
+        labels: [0, 15, 20, 30, 40, 50, 60, 70, 80, 85, 90, 100],
+        datasets: [
+          {
+            label: 'Точно не успевает',
+            data: [{ x: 0, y: 1 }, { x: 20, y: 0 }],
+            backgroundColor: 'rgba(239, 83, 80, 0.5)',
+          },
+          {
+            label: 'Скорее всего не успевает',
+            data: [{ x: 15, y: 0 }, { x: 30, y: 1 }, { x: 50, y: 0 }],
+            backgroundColor: 'rgba(171, 71, 188, 0.5)',
+          },
+          {
+            label: 'Возможно успевает',
+            data: [{ x: 40, y: 0 }, { x: 60, y: 1 }, { x: 85, y: 0 }],
+            backgroundColor: 'rgba(141, 110, 99, 0.5)',
+          },
+          {
+            label: 'Точно успевает',
+            data: [{ x: 80, y: 0 }, { x: 100, y: 1 }],
+            backgroundColor: 'rgba(66, 165, 245, 0.5)',
+          },
+        ],
+      },
+    },
   ];
 
   chartOptions: Chart.ChartOptions = {
@@ -223,6 +276,11 @@ export default class Description extends Vue {
     maintainAspectRatio: false,
     tooltips: {
       intersect: false,
+      callbacks: {
+        title(tooltipItems: any, data: any) {
+          return data.datasets[tooltipItems[0].datasetIndex].data[tooltipItems[0].index].x;
+        },
+      },
     },
   };
 }
