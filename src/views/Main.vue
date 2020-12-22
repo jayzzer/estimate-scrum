@@ -87,6 +87,7 @@ import { getRuleStr, trapezoid } from '@/utils/functions';
 
 @Component
 export default class Main extends Vue {
+  // Результат
   result: { name: string; range: number[]; rule: string; ruleInd: number; value: number } = {
     name: '',
     range: [],
@@ -95,18 +96,30 @@ export default class Main extends Vue {
     value: 0,
   };
 
+  // Информация для полей ввода
   inputs: { name: string; value: number; min: number; max: number }[] = [];
 
+  // Список всех правил
   rules: string[][] = this.initRules();
 
+  // Название выходного параметра
   outputName: string = initialData.outputVariables[0].name;
 
+  /**
+   * Возвращает меру сопоставления для каждой из лингвистических переменных
+   * @param index - номер входного параметра
+   * @param value - введенное значение
+   */
   getFuzzyValues(index: number, value: number): number[] {
     return initialData.inputVariables[index].areas.map(
       (area) => +trapezoid(area.range, value).toFixed(2),
     );
   }
 
+  /**
+   * Агрегация правила
+   * @param rule - правило
+   */
   aggregate(rule: number[]): number {
     const fuzzyValues: number[] = [];
     for (let inpInd = 0; inpInd < 4; inpInd += 1) {
@@ -118,6 +131,9 @@ export default class Main extends Vue {
     return Math.min(...fuzzyValues);
   }
 
+  /**
+   * Вычисляет результат: текстовый результат, выбранное правило, значение, диапазон
+   */
   getResults() {
     let maxRuleVal = 0;
     let maxRuleInd = 0;
@@ -138,6 +154,9 @@ export default class Main extends Vue {
     };
   }
 
+  /**
+   * Возвращает список всех правил в виде строк
+   */
   initRules(): string[][] {
     return initialData.rules.map((rule) => rule.map((term, i) => {
       if (!term) return '';

@@ -1,5 +1,10 @@
 import initialData from '@/utils/initialData';
 
+/**
+ * Возвращает значение трапезоиды
+ * @param range - диапазон
+ * @param value - значение
+ */
 export function trapezoid(range: number[], value: number): number {
   if (value < range[0] || value > range[3]) return 0;
   if (value < range[1]) {
@@ -9,6 +14,10 @@ export function trapezoid(range: number[], value: number): number {
   return (range[3] - value) / (range[3] - range[2]);
 }
 
+/**
+ * Возвращает строковое представление правила
+ * @param rule
+ */
 export function getRuleStr(rule: number[]): string {
   let res = '';
   for (let i = 0; i < 4; i += 1) {
